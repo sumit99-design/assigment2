@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head><title>Register</title></head>
+<body>
+  <h1>User Registration</h1>
+  <% if (errors) { %>
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }); %>
+    </ul>
+  <% } %>
+  <form action="/register" method="post" enctype="multipart/form-data">
+    <label>Username: <input type="text" name="username" value="<%= values ? values.username : '' %>"></label><br>
+    <label>Password: <input type="password" name="password"></label><br>
+    <label>Confirm Password: <input type="password" name="confirmPassword"></label><br>
+    <label>Email: <input type="email" name="email" value="<%= values ? values.email : '' %>"></label><br>
+    <label>Gender:</label>
+    <input type="radio" name="gender" value="male" <%= values && values.gender === 'male' ? 'checked' : '' %>> Male
+    <input type="radio" name="gender" value="female" <%= values && values.gender === 'female' ? 'checked' : '' %>> Female
+    <input type="radio" name="gender" value="other" <%= values && values.gender === 'other' ? 'checked' : '' %>> Other<br>
+    <label>Hobbies:</label>
+    <input type="checkbox" name="hobbies" value="reading" <%= values && values.hobbies && values.hobbies.includes('reading') ? 'checked' : '' %>> Reading
+    <input type="checkbox" name="hobbies" value="sports" <%= values && values.hobbies && values.hobbies.includes('sports') ? 'checked' : '' %>> Sports
+    <input type="checkbox" name="hobbies" value="music" <%= values && values.hobbies && values.hobbies.includes('music') ? 'checked' : '' %>> Music<br>
+    <label>Profile Pic: <input type="file" name="profilePic"></label><br>
+    <label>Other Pics: <input type="file" name="otherPics" multiple></label><br>
+    <button type="submit">Register</button>
+  </form>
+</body>
+</html>

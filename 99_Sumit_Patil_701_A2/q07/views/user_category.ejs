@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Category</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-2xl font-semibold mb-4">Subcategories</h1>
+    <ul class="space-y-2 mb-6">
+      <% subs.forEach(sub => { %>
+        <li><a href="/category/<%= sub._id %>" class="text-blue-500 hover:underline"><%= sub.name %></a></li>
+      <% }); %>
+    </ul>
+    <h1 class="text-2xl font-semibold mb-4">Products</h1>
+    <ul class="space-y-2 mb-6">
+      <% products.forEach(prod => { %>
+        <li>
+          <%= prod.name %> - $<%= prod.price.toFixed(2) %>
+          <form class="cart-form inline">
+            <input type="hidden" name="productId" value="<%= prod._id %>">
+            <button type="submit" class="text-blue-500 hover:underline">Add to Cart</button>
+          </form>
+        </li>
+      <% }); %>
+    </ul>
+    <a href="/" class="text-blue-500 hover:underline">Back to Home</a>
+    <a href="/cart" class="ml-4 text-blue-500 hover:underline">View Cart</a>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="/script.js"></script>
+</body>
+</html>

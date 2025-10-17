@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cart</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">Shopping Cart</h1>
+    <ul class="space-y-2 mb-6">
+      <% products.forEach(prod => { %>
+        <li><%= prod.name %> - $<%= prod.price.toFixed(2) %> (Category: <%= prod.categoryId.name %>)</li>
+      <% }); %>
+    </ul>
+    <a href="/" class="text-blue-500 hover:underline">Continue Shopping</a>
+  </div>
+</body>
+</html>

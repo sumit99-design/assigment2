@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head><title>Success</title></head>
+<body>
+  <h1>Registration Successful</h1>
+  <table border="1">
+    <tr><th>Field</th><th>Value</th></tr>
+    <tr><td>Username</td><td><%= data.username %></td></tr>
+    <tr><td>Email</td><td><%= data.email %></td></tr>
+    <tr><td>Gender</td><td><%= data.gender %></td></tr>
+    <tr><td>Hobbies</td><td><%= data.hobbies %></td></tr>
+    <tr><td>Profile Pic</td><td><img src="/<%= data.profilePic %>" width="100"><br><a href="/download/<%= data.profilePic %>">Download</a></td></tr>
+    <tr><td>Other Pics</td><td>
+      <% data.otherPics.forEach(pic => { %>
+        <img src="/<%= pic %>" width="100"><br><a href="/download/<%= pic %>">Download</a><br>
+      <% }); %>
+    </td></tr>
+  </table>
+</body>
+</html>

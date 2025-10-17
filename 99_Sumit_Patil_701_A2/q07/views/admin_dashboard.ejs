@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 p-6">
+  <div class="max-w-4xl mx-auto">
+    <h1 class="text-3xl font-bold mb-6 text-center">Admin Dashboard</h1>
+    <% if (error) { %>
+      <p class="text-red-600 font-semibold text-center mb-4"><%= error %></p>
+    <% } %>
+    <h2 class="text-2xl font-semibold mb-4">Categories</h2>
+    <table class="w-full border mb-6">
+      <tr class="bg-gray-200"><th class="border p-2">Name</th><th class="border p-2">Parent</th></tr>
+      <% categories.forEach(cat => { %>
+        <tr>
+          <td class="border p-2"><%= cat.name %></td>
+          <td class="border p-2"><%= cat.parentId ? cat.parentId.name : 'None' %></td>
+        </tr>
+      <% }); %>
+    </table>
+    <form action="/admin/category/add" method="post" class="mb-6 space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Category Name</label>
+        <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
+      </div>
+      <div>
+        <label for="parentId" class="block text-sm font-medium text-gray-700">Parent Category (optional)</label>
+        <select id="parentId" name="parentId" class="mt-1 block w-full p-2 border border-gray-300 rounded-md">
+          <option value="">None</option>
+          <% categories.forEach(cat => { %>
+            <option value="<%= cat._id %>"><%= cat.name %></option>
+          <% }); %>
+        </select>
+      </div>
+      <button type="submit" class="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600">Add Category</button>
+    </form>
+    <h2 class="text-2xl font-semibold mb-4">Products</h2>
+    <table class="w-full border mb-6">
+      <tr class="bg-gray-200"><th class="border p-2">Name</th><th class="border p-2">Price</th><th class="border p-2">Category</th></tr>
+      <% products.forEach(prod => { %>
+        <tr>
+          <td class="border p-2"><%= prod.name %></td>
+          <td class="border p-2"><%= prod.price %></td>
+          <td class="border p-2"><%= prod.categoryId.name %></td>
+        </tr>
+      <% }); %>
+    </table>
+    <form action="/admin/product/add" method="post" class="space-y-4">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700">Product Name</label>
+        <input type="text" id="name" name="name" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
+      </div>
+      <div>
+        <label for="price" class="block text-sm font-medium text-gray-700">Price</label>
+        <input type="number" id="price" name="price" step="0.01" min="0" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
+      </div>
+      <div>
+        <label for="categoryId" class="block text-sm font-medium text-gray-700">Category</label>
+        <select id="categoryId" name="categoryId" class="mt-1 block w-full p-2 border border-gray-300 rounded-md" required>
+          <% categories.forEach(cat => { %>
+            <option value="<%= cat._id %>"><%= cat.name %></option>
+          <% }); %>
+        </select>
+      </div>
+      <button type="submit" class="w-full bg-green-500 text-white p-2 rounded-md hover:bg-green-600">Add Product</button>
+    </form>
+    <a href="/admin/logout" class="block text-center mt-4 text-blue-500 hover:underline">Logout</a>
+  </div>
+</body>
+</html>

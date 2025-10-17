@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Edit Employee</title></head>
+<body>
+  <h1>Edit Employee</h1>
+  <form action="/admin/edit/<%= employee._id %>" method="post">
+    <label>Name: <input type="text" name="name" value="<%= employee.name %>"></label><br>
+    <label>Email: <input type="email" name="email" value="<%= employee.email %>"></label><br>
+    <label>Basic Salary: <input type="number" name="basicSalary" value="<%= employee.basicSalary %>"></label><br>
+    <button type="submit">Update</button>
+  </form>
+</body>
+</html>

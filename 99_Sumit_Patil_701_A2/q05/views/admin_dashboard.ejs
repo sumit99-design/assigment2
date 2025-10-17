@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head><title>Admin Dashboard</title></head>
+<body>
+  <h1>Admin Dashboard</h1>
+  <table border="1">
+    <tr><th>EmpID</th><th>Name</th><th>Email</th><th>Basic Salary</th><th>Actions</th></tr>
+    <% employees.forEach(emp => { %>
+      <tr>
+        <td><%= emp.empid %></td>
+        <td><%= emp.name %></td>
+        <td><%= emp.email %></td>
+        <td><%= emp.basicSalary %></td>
+        <td><a href="/admin/edit/<%= emp._id %>">Edit</a> <a href="/admin/delete/<%= emp._id %>">Delete</a></td>
+      </tr>
+    <% }); %>
+  </table>
+  <a href="/admin/add">Add Employee</a>
+  <a href="/admin/logout">Logout</a>
+</body>
+</html>
